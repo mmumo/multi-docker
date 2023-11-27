@@ -1,0 +1,16 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t markmumo/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true markmumo/react-test npm test
+
+after_success:
+  - docker build -t markmumo/multi-client -f ./client/Dockerfile ./client
+  - docker build -t markmumo/multi-nginx ./nginx
+  - docker build -t markmumo/multi-server ./server
+  - docker build -t markmumo/multi-worker ./worker
+
