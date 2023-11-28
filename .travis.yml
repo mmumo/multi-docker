@@ -10,15 +10,15 @@ script:
 
 after_success:
   - docker build -t markmumo/multi-client ./client
-  - docker build -t markmumo/multi-nginx ./nginx
-  - docker build -t markmumo/multi-server ./server
-  - docker build -t markmumo/multi-worker ./worker
+  #- docker build -t markmumo/multi-nginx ./nginx
+  #- docker build -t markmumo/multi-server ./server
+  #- docker build -t markmumo/multi-worker ./worker
   #log into docker cli
   ##- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD" docker.io
   #take those images and push them to docker hub
   - docker push markmumo/multi-client
-  - docker push markmumo/multi-nginx
-  - docker push markmumo/multi-server
-  - docker push markmumo/multi-worker
+  #- docker push markmumo/multi-nginx
+  #- docker push markmumo/multi-server
+  #- docker push markmumo/multi-worker
 
